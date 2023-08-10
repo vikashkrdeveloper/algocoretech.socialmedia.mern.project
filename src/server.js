@@ -8,6 +8,7 @@ const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieparser())
+app.use(route);
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("*", function (req, res) {
     res.sendFile(
@@ -17,7 +18,7 @@ app.get("*", function (req, res) {
         }
     );
 });
-app.use(route);
+
 
 app.all('*', (req, res) => {
     res.status(200).send('Ooops page not found');
